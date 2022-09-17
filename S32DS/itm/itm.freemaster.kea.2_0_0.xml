@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 NXP -->
+<sdks>
+	<sdk
+		basePath="${FREEMASTER_DIR_2.0.0}"
+		cores="SKEAZ128::,SKEAZ64::,SKEAZN64::,SKEAZN32::,SKEAZN16::"
+		description="FreeMASTER Serial Communication Driver for KEAxx"
+		internalPath="false"
+		name="FreeMaster_KEAxx"
+		version="2.0.0">
+		<fragments>
+			<fragment id="gcc_KEA_app_lib" name="gcc_KEA_app_lib" >
+				<actions>
+					<attachActions executionStep="before">
+						<createProjectFolder path="include" buildPath="true"/>
+						<addOptionValue id="gnu.c.compiler.option.include.paths" value="&quot;${ProjDirPath}/include&quot;"/>
+					</attachActions>
+				</actions>
+			</fragment>
+			<fragment id="ghs_KEA_app" name="ghs_KEA_app" >
+				<actions>
+					<attachActions executionStep="before">
+						<createProjectFolder path="include" buildPath="true"/>
+						<addOptionValue id="ghs.managedmake.arm.executable.toolchain.cc_compiler.project.include_directories" value="&quot;${ProjDirPath}/include&quot;"/>
+					</attachActions>
+				</actions>
+			</fragment>
+			<fragment id="ghs_KEA_lib" name="ghs_KEA_lib" >
+				<actions>
+					<attachActions executionStep="before">
+						<createProjectFolder path="include" buildPath="true"/>
+						<addOptionValue id="ghs.managedmake.arm.static_library.toolchain.cc_compiler.project.include_directories" value="&quot;${ProjDirPath}/include&quot;"/>
+					</attachActions>
+				</actions>
+			</fragment>
+				<fragment id="iar_KEA_app_lib" name="iar_KEA_app_lib" >
+				<actions>
+					<attachActions executionStep="before">
+						<createProjectFolder path="include" buildPath="true"/>
+						<addOptionValue id="iar.arm.toolchain.compiler.option.incPaths.v5.4.0" value="&quot;${ProjDirPath}/include&quot;"/>
+					</attachActions>
+				</actions>
+			</fragment>
+		</fragments>
+		<toolchain alias="Debug/Debug_RAM (GCC) App" id="com.freescale.s32ds.cross.gnu.arm.cortexm.toolChain.debug">
+			<fragmentRef id="gcc_KEA_app_lib" />
+		</toolchain>
+		<toolchain alias="Release (GCC) App" id="com.freescale.s32ds.cross.gnu.arm.cortexm.toolChain.release">
+			<fragmentRef id="gcc_KEA_app_lib" />
+		</toolchain>
+		<toolchain alias="Debug (GCC) Lib" id="com.freescale.s32ds.cross.gnu.arm.cortexm.toolChain.lib.debug">
+			<fragmentRef id="gcc_KEA_app_lib" />
+		</toolchain>
+		<toolchain alias="Release (GCC) Lib" id="com.freescale.s32ds.cross.gnu.arm.cortexm.toolChain.lib.release">
+			<fragmentRef id="gcc_KEA_app_lib" />
+		</toolchain>
+		<toolchain alias="Debug (GHS) App" id="com.nxp.s32ds.cle.arm.mbs.ghs.toolchain.debug">
+			<fragmentRef id="ghs_KEA_app" />
+		</toolchain>
+		<toolchain alias="Release (GHS) App" id="com.nxp.s32ds.cle.arm.mbs.ghs.toolchain.release">
+			<fragmentRef id="ghs_KEA_app" />
+		</toolchain>
+		<toolchain alias="Debug_RAM (GHS) App" id="com.nxp.s32ds.cle.arm.mbs.ghs.toolchain.debug.ram">
+			<fragmentRef id="ghs_KEA_app" />
+		</toolchain>
+		<toolchain alias="Release_RAM (GHS) App" id="com.nxp.s32ds.cle.arm.mbs.ghs.toolchain.release.ram">
+			<fragmentRef id="ghs_KEA_app" />
+		</toolchain>
+		<toolchain alias="Debug (GHS) Lib" id="com.nxp.s32ds.cle.arm.mbs.ghs.toolchain.debug.lib">
+			<fragmentRef id="ghs_KEA_lib" />
+		</toolchain>
+		<toolchain alias="Release (GHS) Lib" id="com.nxp.s32ds.cle.arm.mbs.ghs.toolchain.release.lib">
+			<fragmentRef id="ghs_KEA_lib" />
+		</toolchain>
+		<toolchain alias="Debug (IAR) App" id="iar.arm.toolchain.project.exe.configuration.debug.toolchain.v5.4.0">
+			<fragmentRef id="iar_KEA_app_lib" />
+		</toolchain>
+		<toolchain alias="Debug_RAM(IAR) App" id="iar.arm.toolchain.project.exe.configuration.debug.toolchain.v5.4.0">
+			<fragmentRef id="iar_KEA_app_lib" />
+		</toolchain>
+		<toolchain alias="Debug (IAR) Lib" id="iar.arm.toolchain.project.library.configuration.debug.toolchain.v5.4.0">
+			<fragmentRef id="iar_KEA_app_lib" />
+		</toolchain>
+		<toolchain alias="Release (IAR) Lib" id="iar.arm.toolchain.project.library.configuration.release.toolchain.v5.4.0">
+			<fragmentRef id="iar_KEA_app_lib" />
+		</toolchain>
+		<headerFolder
+			copy="false"
+			path="src_common">
+		</headerFolder>
+		<headerFolder
+			copy="false"
+			path="src_platforms/KEAxx">
+		</headerFolder>
+		<sourceFolder
+			copy="false"
+			path="src_common">
+		</sourceFolder>
+		<sourceFolder
+			copy="false"
+			path="src_platforms/KEAxx">
+		</sourceFolder>
+		<resourceFile
+			copy="true"
+			copyToProjectPath="include"
+			path="src_platforms/KEAxx/freemaster_cfg.h.example"
+			renameTo="freemaster_cfg.h"
+			toOpen="true">
+		</resourceFile>
+	</sdk>
+</sdks>
